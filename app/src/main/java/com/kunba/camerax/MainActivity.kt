@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                     override fun onCaptureSuccess(image: ImageProxy?, rotationDegrees: Int) {
                         super.onCaptureSuccess(image, rotationDegrees)
 
-                        //all planes are empty.. for example
+                        //all planes are empty because the image has already been closed.. for example this plane:
                         val buffer = image?.planes?.get(0)?.buffer
 
                         //will crash because buffer will be null
