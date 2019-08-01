@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.os.Bundle
+import android.util.Log
 import android.util.Rational
 import android.view.Surface
 import android.view.TextureView
@@ -24,6 +25,8 @@ private const val REQUEST_CODE_PERMISSIONS = 10
 private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 
 class MainActivity : AppCompatActivity() {
+
+    var planes: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,9 +83,11 @@ class MainActivity : AppCompatActivity() {
                     override fun onCaptureSuccess(image: ImageProxy?, rotationDegrees: Int) {
                         super.onCaptureSuccess(image, rotationDegrees)
 
-                        Toast.makeText(applicationContext, "Image captured", Toast.LENGTH_LONG).show()
+                        //all planes are empty.. for example
+                        val buffer = image?.planes?.get(0)?.buffer
 
-                        //handle image here -> use imageProxyToBitmap() and transform using Glide
+                        //will crash because buffer will be null
+                        Log.i("buffer", buffer.toString())
 
                     }
                 })
